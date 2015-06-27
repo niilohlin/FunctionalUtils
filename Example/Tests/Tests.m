@@ -8,6 +8,8 @@
 
 @import XCTest;
 
+#import "NSArray+ArrayUtils.h"
+
 @interface Tests : XCTestCase
 
 @end
@@ -26,9 +28,32 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testReverse
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSArray *arr = @[@1, @2, @3];
+    NSArray *reversed = @[@3, @2, @1];
+    
+    XCTAssert([[@[] reverse] empty]);
+    XCTAssert([[arr reverse] count] == [arr count]);
+    for(NSUInteger i = 0; i < [arr count]; i++) {
+        XCTAssert([arr reverse][i] == reversed[i]);
+    }
+    
+}
+
+- (void)testMap
+{
+    
+    NSArray *arr = @[@1, @2, @3];
+    NSArray *expected = @[@2, @3, @4];
+    NSArray *result = [arr map:^(id i) {
+        NSNumber *n = (NSNumber*) i;
+        return @([n longValue] + 1);
+    }];
+    
+    for(NSUInteger i = 0; i < [arr count]; i++) {
+        XCTAssert([result[i] isEqualToNumber:expected[i]]);
+    }
 }
 
 @end

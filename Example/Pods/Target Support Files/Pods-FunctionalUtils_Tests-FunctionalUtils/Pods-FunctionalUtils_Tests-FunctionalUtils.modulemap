@@ -1,0 +1,6 @@
+framework module FunctionalUtils {
+  umbrella header "Pods-FunctionalUtils_Tests-FunctionalUtils-umbrella.h"
+
+  export *
+  module * { export * }
+}

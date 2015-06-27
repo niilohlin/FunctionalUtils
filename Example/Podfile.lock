@@ -1,0 +1,14 @@
+PODS:
+  - FunctionalUtils (0.1.0)
+
+DEPENDENCIES:
+  - FunctionalUtils (from `../`)
+
+EXTERNAL SOURCES:
+  FunctionalUtils:
+    :path: ../
+
+SPEC CHECKSUMS:
+  FunctionalUtils: 07f09f2f06ca226dc56f7109e46336e063ea3b37
+
+COCOAPODS: 0.37.2
