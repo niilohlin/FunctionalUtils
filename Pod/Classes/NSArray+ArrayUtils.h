@@ -10,4 +10,11 @@
 
 @interface NSArray (ArrayUtils)
 
+- (BOOL)empty;
+- (NSArray *)map:(id(^)(id obj))block;
+- (NSArray *)reverse;
+- (NSArray *)intersperse:(id)obj;
+- (NSArray *)flatten;
+- (NSArray *)intercalate:(id)obj;
+- (NSArray *)transpose;
 @end
