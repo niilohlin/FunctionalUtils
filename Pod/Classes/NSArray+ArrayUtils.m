@@ -50,9 +50,9 @@
 }
 
 - (NSArray *)flatten {
-    NSMutableArray *returnArray = [NSMutableArray new];
+    NSArray *returnArray = [NSArray new];
     for(id subArray in self) {
-        [returnArray arrayByAddingObjectsFromArray:subArray];
+        returnArray = [returnArray arrayByAddingObjectsFromArray:subArray];
     }
     return returnArray;
     
@@ -86,25 +86,35 @@
     return nil;
 }
 
-- (id)foldl:(id)zero block:(id(^)(id obj, id acc))block {
+- (id)foldl:(id)zero block:(id(^)(id acc, id obj))block {
     if([self empty]) {
         return zero;
     }
-    id accumulator = block(self[0], zero);
+    id accumulator = block(zero, self[0]);
     for(int i = 1; i < [self count]; i++) {
-        accumulator = block(self[i], accumulator);
+        accumulator = block(accumulator, self[i]);
     }
     return accumulator;
 }
 
-- (id)foldl_:(id(^)(id obj, id acc))block {
+- (id)foldl_:(id(^)(id acc, id obj))block {
     return [[self tail] foldl:[self head] block:block];
 }
 - (id)foldr:(id)zero block:(id(^)(id obj, id acc))block {
-    return nil;
+    if([self empty]) {
+        return zero;
+    }
+    id accumulator = block(self[[self count] - 1], zero);
+    for(NSInteger i = [self count] - 2; i <= 0; i--) {
+        accumulator = block(self[i], accumulator);
+    }
+    return accumulator;
 }
 - (id)foldr_:(id(^)(id obj, id acc))block {
-    return nil;
+    NSArray *reversed = [self reverse];
+    id last = [reversed head];
+    id init = [reversed tail];
+    return [[init reverse] foldr:last block:block];
 }
 
 - (NSArray *)flatMap:(NSArray*(^)(id obj))block {
@@ -201,6 +211,16 @@
     returnArray[0] = obj;
     for(NSUInteger i = 0; i < [self count]; i++) {
         returnArray[i + 1] = self[i];
+    }
+    return returnArray;
+}
+
+-(NSArray *)filter:(BOOL(^)(id obj))block {
+    NSMutableArray *returnArray = [NSMutableArray new];
+    for(id elem in self) {
+        if(block(elem)) {
+            [returnArray addObject:elem];
+        }
     }
     return returnArray;
 }

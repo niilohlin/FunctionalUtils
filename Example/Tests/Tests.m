@@ -77,5 +77,31 @@
     }
 }
 
+- (void)testFlatten {
+    NSArray *array = @[@[@1, @2], @[@3, @4]];
+    XCTAssert(arrayOfNumbersEqual([array flatten], @[@1, @2, @3, @4]));
+}
+
+- (void)testFlatmap
+{
+    NSArray *array = @[@1, @2];
+    NSArray *descr = @[@3, @4];
+    NSArray *result = [array flatMap:^(NSNumber *num1){
+        return [descr flatMap:^(NSNumber *num2) {
+            return @[num1, num2];
+        }];
+    }];
+    XCTAssert(arrayOfNumbersEqual(result, @[@1, @3, @1, @4, @2, @3, @2, @4]));
+}
+
+BOOL arrayOfNumbersEqual(NSArray *arr1, NSArray *arr2) {
+    for(int i = 0; i < [arr1 count]; i++) {
+        if(![arr1[i] isEqualToNumber:arr2[i]]) {
+            return NO;
+        }
+    }
+    return [arr1 count] == [arr2 count];
+}
+
 
 @end

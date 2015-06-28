@@ -18,4 +18,5 @@
 - (NSArray *)intercalate:(id)obj;
 - (NSArray *)transpose;
 - (NSNumber *)sum;
+- (NSArray *)flatMap:(NSArray*(^)(id obj))block;
 @end
