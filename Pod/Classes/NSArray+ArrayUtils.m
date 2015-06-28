@@ -7,6 +7,7 @@
 //
 
 #import "NSArray+ArrayUtils.h"
+#import "NSNumber+Num.h"
 
 @implementation NSArray (ArrayUtils)
 
@@ -16,11 +17,10 @@
 }
 
 - (NSArray *)map:(id(^)(id obj))block {
-    NSMutableArray *returnArray = [NSMutableArray new];
-    for(id element in self) {
-        [returnArray addObject:block(element)];
+    NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:[self count]];
+    for(NSUInteger i = 0; i < [self count]; i++) {
+        returnArray[i] = block(self[i]);
     }
-    
     return returnArray;
 }
 
@@ -63,18 +63,20 @@
 }
 
 - (NSArray *)transpose {
+    
     NSUInteger rowLength = [self count];
     NSUInteger colLength = [[self firstObject] count];
     
     NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:colLength];
     
-    for(NSUInteger i = 0; i < rowLength; i++) {
-        [returnArray addObject:[[NSMutableArray alloc] initWithCapacity:rowLength]];
+    for(NSUInteger i = 0; i < colLength; i++) {
+        returnArray[i] =[[NSMutableArray alloc] initWithCapacity:rowLength];
     }
+    NSLog(@"returnArray = %@", returnArray);
     
-    for(NSUInteger i = 0; i < rowLength; i++) {
-        for(NSUInteger j = 0; j < colLength; j++) {
-            returnArray[i][j] = self[j][i];
+    for(NSUInteger row = 0; row < rowLength; row++) {
+        for(NSUInteger col = 0; col < colLength; col++) {
+            returnArray[col][row] = self[row][col];
         }
     }
     return returnArray;
@@ -84,21 +86,29 @@
     return nil;
 }
 
-- (NSArray *)foldl:(id(^)(id obj, id acc))block {
+- (id)foldl:(id)zero block:(id(^)(id obj, id acc))block {
+    if([self empty]) {
+        return zero;
+    }
+    id accumulator = block(self[0], zero);
+    for(int i = 1; i < [self count]; i++) {
+        accumulator = block(self[i], accumulator);
+    }
+    return accumulator;
+}
+
+- (id)foldl_:(id(^)(id obj, id acc))block {
+    return [[self tail] foldl:[self head] block:block];
+}
+- (id)foldr:(id)zero block:(id(^)(id obj, id acc))block {
     return nil;
 }
-- (NSArray *)foldl_:(id(^)(id obj, id acc))block {
-    return nil;
-}
-- (NSArray *)foldr:(id(^)(id obj, id acc))block {
-    return nil;
-}
-- (NSArray *)foldr_:(id(^)(id obj, id acc))block {
+- (id)foldr_:(id(^)(id obj, id acc))block {
     return nil;
 }
 
 - (NSArray *)flatMap:(NSArray*(^)(id obj))block {
-    return nil;
+    return [[self map:block] flatten];
 }
 
 - (BOOL)any:(BOOL(^)(id obj))block {
@@ -119,4 +129,81 @@
     return YES;
 }
 
+- (NSNumber *)sum {
+    return [self foldl:@0 block:^(NSNumber *n, NSNumber *acc) {
+        return [n add:acc];
+    }];
+}
+
+- (NSNumber *)product {
+    return [self foldl:@1 block:^(NSNumber *n, NSNumber *acc) {
+        return [n multiply:acc];
+    }];
+}
+
+- (NSNumber *)maximum {
+    return [self foldl_:^(NSNumber *n, NSNumber *acc) {
+        return [n max:acc];
+    }];
+}
+
+- (NSNumber *)minimum {
+    return [self foldl_:^(NSNumber *n, NSNumber *acc) {
+        return [n min:acc];
+    }];
+}
+
+- (NSArray *)scanl {
+    return nil;
+}
+
+- (NSArray *)take:(NSUInteger)elements {
+    NSMutableArray *returnArray = [NSMutableArray new];
+    for(int i = 0; i < elements; i++) {
+        [returnArray addObject:self[i]];
+    }
+    return returnArray;
+}
+
+- (NSArray *)drop:(NSUInteger)elements {
+    NSMutableArray *returnArray = [NSMutableArray new];
+    for(; elements < [self count]; elements++) {
+        [returnArray addObject:self[elements]];
+    }
+    return returnArray;
+}
+
+
+- (NSArray *)eachWithIndex:(void (^)(id obj, NSUInteger idx))block {
+    for(NSUInteger i = 0; i < [self count]; i++) {
+        block(self[i], i);
+    }
+    return self;
+}
+
+- (NSArray *)each:(void (^)(id obj))block {
+    for(id elem in self) {
+        block(elem);
+    }
+    return self;
+}
+
+- (id)head {
+    return [self firstObject];
+}
+
+- (NSArray *)tail {
+    return [self drop:1];
+}
+
+-(NSArray *)cons:(id)obj {
+    NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:[self count] + 1];
+    returnArray[0] = obj;
+    for(NSUInteger i = 0; i < [self count]; i++) {
+        returnArray[i + 1] = self[i];
+    }
+    return returnArray;
+}
+
 @end
+

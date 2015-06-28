@@ -56,4 +56,26 @@
     }
 }
 
+- (void)testSum
+{
+    NSArray *arr = @[@1, @2, @3, @4];
+    XCTAssert([[arr sum] isEqualToNumber:@10]);
+    
+    NSArray *empty = @[];
+    XCTAssert([[empty sum] isEqualToNumber:@0]);
+}
+
+- (void)testTranspose
+{
+    NSArray *matrix   = @[@[@1, @2], @[@3, @4], @[@5, @6]];
+    NSArray *transposed = [matrix transpose];
+    NSArray *expected = @[@[@1, @3, @5], @[@2, @4, @6]];
+    for(int i = 0; i < [transposed count]; i++) {
+        for(int j = 0; j < [[transposed firstObject] count]; j++) {
+            XCTAssert([transposed[i][j] isEqualToNumber:expected[i][j]]);
+        }
+    }
+}
+
+
 @end
