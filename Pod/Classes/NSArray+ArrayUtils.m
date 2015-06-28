@@ -206,7 +206,7 @@
     return [self drop:1];
 }
 
--(NSArray *)cons:(id)obj {
+- (NSArray *)cons:(id)obj {
     NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:[self count] + 1];
     returnArray[0] = obj;
     for(NSUInteger i = 0; i < [self count]; i++) {
@@ -215,7 +215,7 @@
     return returnArray;
 }
 
--(NSArray *)filter:(BOOL(^)(id obj))block {
+- (NSArray *)filter:(BOOL(^)(id obj))block {
     NSMutableArray *returnArray = [NSMutableArray new];
     for(id elem in self) {
         if(block(elem)) {
