@@ -94,6 +94,11 @@
     XCTAssert(arrayOfNumbersEqual(result, @[@1, @3, @1, @4, @2, @3, @2, @4]));
 }
 
+- (void)testStep
+{
+    
+}
+
 BOOL arrayOfNumbersEqual(NSArray *arr1, NSArray *arr2) {
     for(int i = 0; i < [arr1 count]; i++) {
         if(![arr1[i] isEqualToNumber:arr2[i]]) {

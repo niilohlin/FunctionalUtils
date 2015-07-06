@@ -7,7 +7,7 @@
 //
 
 #import "NSArray+ArrayUtils.h"
-#import "NSNumber+Num.h"
+#import "NSNumber+NumberUtils.h"
 
 @implementation NSArray (ArrayUtils)
 
@@ -163,15 +163,24 @@
     }];
 }
 
-- (NSArray *)scanl {
-    return nil;
+- (NSArray *)scanl:(id)zero block:(id(^)(id acc, id obj))block {
+    if([self empty]) {
+        return zero;
+    }
+    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[self count] + 1];
+    id acc = block(zero, self[0]);
+    for(int i = 0; i <= [self count]; i++) {
+        acc = block(acc, self[i]);
+        result[i] = acc;
+    }
+    return acc;
 }
 
 - (NSArray *)take:(NSUInteger)elements {
     NSMutableArray *returnArray = [NSMutableArray new];
-    for(int i = 0; i < elements; i++) {
+    [@(elements) times:^(NSUInteger i) {
         [returnArray addObject:self[i]];
-    }
+    }];
     return returnArray;
 }
 
@@ -185,9 +194,9 @@
 
 
 - (NSArray *)eachWithIndex:(void (^)(id obj, NSUInteger idx))block {
-    for(NSUInteger i = 0; i < [self count]; i++) {
+    [@([self count]) times:^(NSUInteger i) {
         block(self[i], i);
-    }
+    }];
     return self;
 }
 
@@ -223,6 +232,14 @@
         }
     }
     return returnArray;
+}
+
+- (NSString *)unwords {
+    return [self componentsJoinedByString:@" "];
+}
+
+- (NSString *)unlines {
+    return [self componentsJoinedByString:@"\n"];
 }
 
 @end
