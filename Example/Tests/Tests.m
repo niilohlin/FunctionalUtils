@@ -99,6 +99,23 @@
     
 }
 
+- (void)testMaximumBy
+{
+    NSArray *array = @[@"a", @"aa", @"kalas"];
+    XCTAssert([[array maximumBy:^(NSString *first, NSString *second) {
+        return [@(first.length) compare:@(second.length)];
+    }] isEqualToString:@"kalas"]);
+}
+
+
+- (void)testMinimumBy
+{
+    NSArray *array = @[@"a", @"aa", @"kalas"];
+    XCTAssert([[array minimumBy:^(NSString *first, NSString *second) {
+        return [@(first.length) compare:@(second.length)];
+    }] isEqualToString:@"a"]);
+}
+
 BOOL arrayOfNumbersEqual(NSArray *arr1, NSArray *arr2) {
     for(int i = 0; i < [arr1 count]; i++) {
         if(![arr1[i] isEqualToNumber:arr2[i]]) {
@@ -107,6 +124,7 @@ BOOL arrayOfNumbersEqual(NSArray *arr1, NSArray *arr2) {
     }
     return [arr1 count] == [arr2 count];
 }
+
 
 
 @end
