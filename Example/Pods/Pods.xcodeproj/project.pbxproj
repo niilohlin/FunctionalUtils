@@ -15,6 +15,8 @@
 		924592241144E6BE32B9F14D /* NSArray+ArrayUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CEAD6A4A8C4D0E4E53C339E /* NSArray+ArrayUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B6B65CBC9C80E2A5CEE6215 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA22594556E63B5D502BFC4 /* Foundation.framework */; };
 		B884DFD0A46E50D6DD519DA6 /* Pods-FunctionalUtils_Tests-FunctionalUtils-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 969B3CEFCE31DDDCF3847319 /* Pods-FunctionalUtils_Tests-FunctionalUtils-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C82DA2741B578D3800FAC027 /* Tuple2D.h in Headers */ = {isa = PBXBuildFile; fileRef = C82DA2721B578D3800FAC027 /* Tuple2D.h */; };
+		C82DA2751B578D3800FAC027 /* Tuple2D.m in Sources */ = {isa = PBXBuildFile; fileRef = C82DA2731B578D3800FAC027 /* Tuple2D.m */; };
 		C8CCC0AE1B4088CD00BF2EE7 /* NSNumber+NumberUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C8CCC0AC1B4088CD00BF2EE7 /* NSNumber+NumberUtils.h */; };
 		C8CCC0AF1B4088CD00BF2EE7 /* NSNumber+NumberUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CCC0AD1B4088CD00BF2EE7 /* NSNumber+NumberUtils.m */; };
 		C8CCC0B31B40CA8A00BF2EE7 /* NSString+StringUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C8CCC0B11B40CA8A00BF2EE7 /* NSString+StringUtils.h */; };
@@ -61,9 +63,10 @@
 		AF1538980A3AF0813CBCA591 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAA22594556E63B5D502BFC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C5E38AF65AF53C58C1F1F207 /* FunctionalUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FunctionalUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C82DA2721B578D3800FAC027 /* Tuple2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tuple2D.h; sourceTree = "<group>"; };
+		C82DA2731B578D3800FAC027 /* Tuple2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tuple2D.m; sourceTree = "<group>"; };
 		C8CCC0AC1B4088CD00BF2EE7 /* NSNumber+NumberUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NumberUtils.h"; sourceTree = "<group>"; };
 		C8CCC0AD1B4088CD00BF2EE7 /* NSNumber+NumberUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+NumberUtils.m"; sourceTree = "<group>"; };
-		C8CCC0B01B408B9E00BF2EE7 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		C8CCC0B11B40CA8A00BF2EE7 /* NSString+StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringUtils.h"; sourceTree = "<group>"; };
 		C8CCC0B21B40CA8A00BF2EE7 /* NSString+StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringUtils.m"; sourceTree = "<group>"; };
 		CF9F37AF5D7BD5E3257130C5 /* Pods-FunctionalUtils_Tests-FunctionalUtils.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-FunctionalUtils_Tests-FunctionalUtils.modulemap"; sourceTree = "<group>"; };
@@ -166,7 +169,8 @@
 				C8CCC0B21B40CA8A00BF2EE7 /* NSString+StringUtils.m */,
 				C8CCC0AC1B4088CD00BF2EE7 /* NSNumber+NumberUtils.h */,
 				C8CCC0AD1B4088CD00BF2EE7 /* NSNumber+NumberUtils.m */,
-				C8CCC0B01B408B9E00BF2EE7 /* Utils.h */,
+				C82DA2721B578D3800FAC027 /* Tuple2D.h */,
+				C82DA2731B578D3800FAC027 /* Tuple2D.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -237,6 +241,7 @@
 				1C93E42995156441D8D57CE0 /* Pods-FunctionalUtils_Tests-umbrella.h in Headers */,
 				C8CCC0B31B40CA8A00BF2EE7 /* NSString+StringUtils.h in Headers */,
 				C8CCC0AE1B4088CD00BF2EE7 /* NSNumber+NumberUtils.h in Headers */,
+				C82DA2741B578D3800FAC027 /* Tuple2D.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C82DA2751B578D3800FAC027 /* Tuple2D.m in Sources */,
 				C8CCC0AF1B4088CD00BF2EE7 /* NSNumber+NumberUtils.m in Sources */,
 				51703922F0520258B6793B2F /* Pods-FunctionalUtils_Tests-dummy.m in Sources */,
 				C8CCC0B41B40CA8A00BF2EE7 /* NSString+StringUtils.m in Sources */,

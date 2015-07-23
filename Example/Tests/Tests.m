@@ -116,6 +116,25 @@
     }] isEqualToString:@"a"]);
 }
 
+
+- (void)testGroupBy
+{
+    
+    NSArray *array = @[@"apa", @"der", @"foo", @"derp", @"bepa"];
+    NSArray *result = [array groupBy:^(id first, id second) {
+        if([first length] == [second length])
+            return YES;
+        return NO;
+    }];
+    
+    XCTAssert([result[0][0] isEqualToString:@"apa"]);
+    XCTAssert([result[0][1] isEqualToString:@"der"]);
+    XCTAssert([result[0][2] isEqualToString:@"foo"]);
+    
+    XCTAssert([result[1][0] isEqualToString:@"derp"]);
+    XCTAssert([result[1][1] isEqualToString:@"bepa"]);
+}
+
 BOOL arrayOfNumbersEqual(NSArray *arr1, NSArray *arr2) {
     for(int i = 0; i < [arr1 count]; i++) {
         if(![arr1[i] isEqualToNumber:arr2[i]]) {

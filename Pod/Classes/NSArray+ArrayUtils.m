@@ -157,6 +157,26 @@
     }];
 }
 
+- (id)maximumBy:(NSComparisonResult(^)(id first, id second))comparioson {
+    id biggest = [self head];
+    for(id other in self) {
+        if(comparioson(biggest, other) == NSOrderedAscending) {
+            biggest = other;
+        }
+    }
+    return biggest;
+}
+
+- (id)minimumBy:(NSComparisonResult(^)(id first, id second))comparioson {
+    id smallest = [self head];
+    for(id other in self) {
+        if(comparioson(smallest, other) == NSOrderedDescending) {
+            smallest = other;
+        }
+    }
+    return smallest;
+}
+
 - (NSNumber *)minimum {
     return [self foldl_:^(NSNumber *n, NSNumber *acc) {
         return [n min:acc];
@@ -241,6 +261,46 @@
 - (NSString *)unlines {
     return [self componentsJoinedByString:@"\n"];
 }
+
+- (NSArray *)sortByKey:(NSString *)key {
+    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:key ascending:YES]];
+    return [self sortedArrayUsingDescriptors:sortDescriptors];
+}
+
+- (NSArray *)filterByKey:(NSString *)key {
+    return [self filter:^(id object) {
+        return [[object objectForKey:key] boolValue];
+    }];
+}
+
+- (NSArray *)zipWith:(NSArray *)other block:(id(^)(id first, id second))block {
+    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[self count]];
+    for(int i = 0; i < [self count]; i++) {
+        result[i] = block(self[i], other[i]);
+    }
+    return result;
+}
+
+
+- (NSArray *)groupBy:(BOOL(^)(id first, id second))block {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    int j = 0, i = 0;
+    while(i < [self count]) {
+        NSMutableArray *group = [[NSMutableArray alloc] init];
+        j = 0;
+        while(block(self[i],self[i + j])) {
+            [group addObject:self[i + j]];
+            j++;
+            if(i + j >= [self count]) {
+                break;
+            }
+        }
+        [result addObject:group];
+        i += j;
+    }
+    return result;
+}
+
 
 @end
 

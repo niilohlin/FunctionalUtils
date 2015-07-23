@@ -21,6 +21,9 @@
 - (NSNumber *)product;
 - (NSNumber *)maximum;
 - (NSNumber *)minimum;
+- (id)maximumBy:(NSComparisonResult(^)(id first, id second))comparioson;
+- (id)minimumBy:(NSComparisonResult(^)(id first, id second))comparioson;
+- (NSArray *)groupBy:(BOOL(^)(id first, id second))block;
 - (NSArray *)take:(NSUInteger)elements;
 - (NSArray *)drop:(NSUInteger)elements;
 - (NSArray *)eachWithIndex:(void (^)(id obj, NSUInteger idx))block;
