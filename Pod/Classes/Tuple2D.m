@@ -10,9 +10,15 @@
 
 @implementation Tuple2D
 
-- (instancetype)initWithObjects:(id)first second:(id)second {
-    self._1 = first;
-    self._2 = second;
++ (instancetype)tupleWithObjects:(id)first second:(id)second {
+    Tuple2D *tuple = [[Tuple2D alloc] init];
+    tuple._1 = first;
+    tuple._2 = second;
+    return tuple;
+}
+
+- (id)joinWithBlock:(id(^)(id first, id second))block {
+    return block(self._1, self._2);
 }
 
 - (NSString *)description {

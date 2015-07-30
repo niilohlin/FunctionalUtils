@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8906D75C6B5D798CE6E99592"
+               BlueprintIdentifier = "FD2EB3C5D4DE2E3A794A8547"
                BuildableName = "FunctionalUtils.framework"
                BlueprintName = "Pods-FunctionalUtils_Tests-FunctionalUtils"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -28,26 +28,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "FunctionalUtils_Tests.xctest"
-               BlueprintName = "FunctionalUtils_Tests"
-               ReferencedContainer = "container:../FunctionalUtils.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8906D75C6B5D798CE6E99592"
-            BuildableName = "FunctionalUtils.framework"
-            BlueprintName = "Pods-FunctionalUtils_Tests-FunctionalUtils"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -58,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8906D75C6B5D798CE6E99592"
-            BuildableName = "FunctionalUtils.framework"
-            BlueprintName = "Pods-FunctionalUtils_Tests-FunctionalUtils"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -76,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8906D75C6B5D798CE6E99592"
-            BuildableName = "FunctionalUtils.framework"
-            BlueprintName = "Pods-FunctionalUtils_Tests-FunctionalUtils"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

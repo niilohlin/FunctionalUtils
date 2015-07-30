@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A244B2C649456BFCE8F9920D"
+               BlueprintIdentifier = "0D55575D4CA57DA73551EC68"
                BuildableName = "FunctionalUtils.bundle"
                BlueprintName = "Pods-FunctionalUtils_Tests-FunctionalUtils-FunctionalUtils"
                ReferencedContainer = "container:Pods.xcodeproj">

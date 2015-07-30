@@ -9,6 +9,7 @@
 @import XCTest;
 
 #import "NSArray+ArrayUtils.h"
+#import "Tuple2D.h"
 
 @interface Tests : XCTestCase
 
@@ -133,6 +134,15 @@
     
     XCTAssert([result[1][0] isEqualToString:@"derp"]);
     XCTAssert([result[1][1] isEqualToString:@"bepa"]);
+}
+
+- (void)testJoinTuple
+{
+    Tuple2D *t = [Tuple2D tupleWithObjects:@1 second:@2];
+    NSNumber *r = [t joinWithBlock:^(NSNumber *n1, NSNumber *n2) {
+        return @([n1 intValue] + [n2 intValue]);
+    }];
+    XCTAssert([r isEqualToNumber:@3]);
 }
 
 BOOL arrayOfNumbersEqual(NSArray *arr1, NSArray *arr2) {
