@@ -145,6 +145,19 @@
     XCTAssert([r isEqualToNumber:@3]);
 }
 
+- (void)testAny
+{
+    
+    NSArray *arr = @[@1, @2, @3, @4];
+    BOOL isfour = [arr any:^(NSNumber *num){
+        return [num isEqualToNumber:@4];
+    }];
+    XCTAssert(isfour);
+    BOOL isfive = [arr any:^(NSNumber *num){
+        return [num isEqualToNumber:@5];
+    }];
+    XCTAssert(!isfive);
+}
 BOOL arrayOfNumbersEqual(NSArray *arr1, NSArray *arr2) {
     for(int i = 0; i < [arr1 count]; i++) {
         if(![arr1[i] isEqualToNumber:arr2[i]]) {
