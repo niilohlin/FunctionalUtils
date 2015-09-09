@@ -29,6 +29,8 @@
 - (NSArray *)eachWithIndex:(void (^)(id obj, NSUInteger idx))block;
 - (NSArray *)each:(void (^)(id obj))block;
 - (id)head;
+- (NSArray *)nub;
+- (NSArray *)nubBy:(BOOL(^)(id first, id second))block;
 - (NSArray *)tail;
 - (NSArray *)cons:(id)obj;
 - (NSArray *)filter:(BOOL(^)(id obj))block;

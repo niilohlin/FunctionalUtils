@@ -301,6 +301,31 @@
     return result;
 }
 
+- (NSArray *)nub {
+    return [self nubBy:^(id a, id b) {
+        if(a == b) {
+            return YES;
+        }
+        return NO;
+    }];
+}
+- (NSArray *)nubBy:(BOOL(^)(id first, id second))block {
+    NSMutableArray *res = [[NSMutableArray alloc] init];
+    NSArray *this = [self reverse];
+    for(int i = 0; i < [this count]; i ++) {
+        BOOL found = NO;
+        for(int j = i + 1; j < [this count]; j++) {
+            if(block(this[i], this[j])) {
+                found = YES;
+                break;
+            }
+        }
+        if(!found) {
+            [res addObject:this[i]];
+        }
+    }
+    return [res reverse];
+}
 
 @end
 

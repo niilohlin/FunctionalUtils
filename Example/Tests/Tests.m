@@ -158,6 +158,33 @@
     }];
     XCTAssert(!isfive);
 }
+
+
+- (void)testNub
+{
+    NSArray *arr = @[@1, @2, @3, @3, @1, @1];
+    NSArray *expected = @[@1, @2, @3];
+    NSArray *output = [arr nubBy:^(id a, id b) {
+        if([a intValue] == [b intValue]) {
+            return YES;
+        }
+        return NO;
+    }];
+    XCTAssert(arrayOfNumbersEqual(output, expected));
+    
+    NSNumber *one = @1;
+    NSNumber *two = @2;
+    NSNumber *three = @3;
+    
+    arr = @[one, two, three, three, one, one];
+    
+    output = [arr nub];
+    XCTAssert(arrayOfNumbersEqual(output, expected));
+    
+}
+
+
+
 BOOL arrayOfNumbersEqual(NSArray *arr1, NSArray *arr2) {
     for(int i = 0; i < [arr1 count]; i++) {
         if(![arr1[i] isEqualToNumber:arr2[i]]) {
