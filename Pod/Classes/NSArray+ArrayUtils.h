@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSArray (ArrayUtils)
+@interface NSArray<T> (ArrayUtils)
 
 - (BOOL)empty;
-- (NSArray *)map:(id(^)(id obj))block;
+- (NSArray *)map:(id(^)(T obj))block;
 - (NSArray *)reverse;
 - (NSArray *)intersperse:(id)obj;
 - (NSArray *)flatten;
@@ -41,4 +41,5 @@
 - (id)foldr_:(id(^)(id obj, id acc))block;
 - (BOOL)any:(BOOL(^)(id obj))block;
 - (BOOL)all:(BOOL(^)(id obj))block;
+- (NSArray *)zipWith:(NSArray *)other block:(id(^)(id first, id second))block;
 @end

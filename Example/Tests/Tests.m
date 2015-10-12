@@ -184,6 +184,18 @@
 }
 
 
+- (void)testZipWith
+{
+    NSArray *arr1 = @[@1, @2, @1];
+    NSArray *arr2 = @[@5, @4, @0];
+    NSArray *expected = @[@6, @6, @1];
+    
+    NSArray *result = [arr1 zipWith:arr2 block:^(NSNumber *n1, NSNumber *n2) {
+        return @([n1 intValue] + [n2 intValue]);
+    }];
+    XCTAssert(arrayOfNumbersEqual(result, expected));
+    
+}
 
 BOOL arrayOfNumbersEqual(NSArray *arr1, NSArray *arr2) {
     for(int i = 0; i < [arr1 count]; i++) {
