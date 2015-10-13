@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSArray<T> (ArrayUtils)
+@interface NSArray (ArrayUtils)
 
 - (BOOL)empty;
-- (NSArray *)map:(id(^)(T obj))block;
+- (NSArray *)map:(id(^)(id obj))block;
 - (NSArray *)reverse;
 - (NSArray *)intersperse:(id)obj;
 - (NSArray *)flatten;
